@@ -12,12 +12,13 @@ def input_postal_code(prompt, *postalcodes):
 
 
 def _check_postalcode(value, postalcodes):
+
     try:
         number = int(value)
     except ValueError:
         raise ValueError(f"{value} is not numerical! Only numbers, please!")
 
     if number not in postalcodes:
-        raise ValueError(f"Postal code {number} is not valid! Valid codes are: {postalcodes}")
+        raise ValueError(f"Postal code {number} is not valid! Valid codes are: {','.join([str(value) for value in postalcodes])}")
 
     return number
