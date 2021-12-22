@@ -5,18 +5,19 @@ def input_postal_code(prompt, *postalcodes):
         if number_char.upper() == "Q":
             return "Good bye!"
 
-        if _check_postalcode(number_char, postalcodes) is not None:
-            return number_char
+        try:
+            return _check_postalcode(number_char, postalcodes)
+        except ValueError as error:
+            print(error)
 
 
 def _check_postalcode(value, postalcodes):
     try:
         number = int(value)
     except ValueError:
-        print(f"{value} is not numerical! Only numbers, please!")
-        return
-    try:
-        return postalcodes.index(number)
-    except ValueError:
-        print(f"Postal code {number} is not valid! Valid codes are: {postalcodes}")
-        return
+        raise ValueError(f"{value} is not numerical! Only numbers, please!")
+
+    if number not in postalcodes:
+        raise ValueError(f"Postal code {number} is not valid! Valid codes are: {postalcodes}")
+
+    return number
