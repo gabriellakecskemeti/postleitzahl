@@ -21,5 +21,5 @@ def _check_postalcode(value, postalcodes):
                 return number
         raise ValueError("Postal code is not valid!")
     except ValueError:
-        print("Postal code is not valid!")
+        print(f"Postal code {number} is not valid! Valid codes are: {postalcodes}")
         return
