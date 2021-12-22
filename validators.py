@@ -6,7 +6,7 @@ def input_postal_code(prompt, *postalcodes):
             return "Good bye!"
         number = _check_postalcode(number_char, postalcodes)
         if number is not None:
-            return number
+            return number_char
 
 
 def _check_postalcode(value, postalcodes):
@@ -16,10 +16,7 @@ def _check_postalcode(value, postalcodes):
         print("Only numbers, please!")
         return
     try:
-        for x in postalcodes:
-            if number == x:
-                return number
-        raise ValueError("Postal code is not valid!")
+        return postalcodes.index(number)
     except ValueError:
         print(f"Postal code {number} is not valid! Valid codes are: {postalcodes}")
         return
